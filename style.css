@@ -1,5 +1,25 @@
-.body {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+}
+
+.navbar-desktop,
+.navbar-mobile {
+    display: none;
+    background-color: #FFE632;
+}
+
+/* Styles for mobile/tablet */
+@media (min-width: 1023px) {
+    .navbar-mobile {
+        display: flex;
+    }
+}
+
+/* Styles for desktop */
+@media (min-width: 1024px) {
+    .navbar-desktop {
+        display: flex;
+    }
 }
