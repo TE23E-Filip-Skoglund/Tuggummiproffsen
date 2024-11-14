@@ -4,16 +4,60 @@ body {
     padding: 0;
 }
 
+
+/* ========== Navbar ========== */
 .navbar-desktop,
 .navbar-mobile {
     display: none;
     background-color: #FFE632;
 }
 
+.navbar-mobile img {
+    width: 60vw;
+    height: auto;
+    object-fit: contain;
+    padding: 10px 20px;
+}
+.navbar-desktop img {
+    width: 40vw;
+    height: auto;
+    object-fit: contain;
+}
+
+.navbar-mobile i,
+.navbar-desktop i {
+    font-size: 2rem;
+    color: #000;
+}
+
+.cart {
+    background-color: #FFF39A;
+    padding: 10px 20px;
+}
+
+/* HIDE WHEN FINISHED */
+.cartAmount {
+    /* display: none; */
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+}
+
 /* Styles for mobile/tablet */
 @media (max-width: 1023px) {
     .navbar-mobile {
         display: flex;
+        padding-top: 10px;
+        padding-bottom: 0;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .cart {
+        width: 100%;
     }
 }
 
