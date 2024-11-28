@@ -30,10 +30,16 @@ let itemsData = [
         name: "Guld",
         price: 59.90,
         img: "img/produkt/p-gold.webp",
+    },
+    {
+        id: "produkt6",
+        name: "Vitlök",
+        price: 24.90,
+        img: "img/produkt/p-garlic.webp"
     }
 ];
 
-let createShop = () => {
+function createShop() {
     // Map functions tar varje item i arrayen ovan försig och upprepar det för x antal gånger (en gång för varje produkt)
     return (shop.innerHTML = itemsData.map((x) => {
         return `
