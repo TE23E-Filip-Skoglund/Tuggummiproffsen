@@ -39,6 +39,8 @@ let itemsData = [
     }
 ];
 
+let basket = [];
+
 function createShop() {
     // Map functions tar varje item i arrayen ovan försig och upprepar det för x antal gånger (en gång för varje produkt)
     return (shop.innerHTML = itemsData.map((x) => {
@@ -49,12 +51,32 @@ function createShop() {
                 <h3>${x.name}</h3>
                 <div class="price">
                     <h2>${x.price}:-</h2>
-                    <i class="bi bi-basket"></i>
+                    <i onclick="addToBasket('${x.id}')" class="bi bi-basket"></i>
                 </div>
             </div>
         </div>
     `
     }).join(""));
 };
-
 createShop();
+
+
+function addToBasket(id) {
+    let selectedItem = itemsData.find((x) => x.id === id);
+    let exist = basket.find((x) => x.id === selectedItem.id)
+
+    if (selectedItem) {
+        if (!exist) {
+            basket.push({
+                id: selectedItem.id,
+                amount: 1
+            });
+        } else {
+            exist.amount += 1;
+        }
+    } else {
+        console.error('Item not found');
+    }
+
+    console.log(basket)
+};
