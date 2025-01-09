@@ -39,7 +39,7 @@ let itemsData = [
     }
 ];
 
-let basket = [];
+let basket = JSON.parse(localStorage.getItem('data')) || []; // get storage from localstorage, or create a empty array
 
 function createShop() {
     // Map functions tar varje item i arrayen ovan försig och upprepar det för x antal gånger (en gång för varje produkt)
@@ -78,5 +78,15 @@ function addToBasket(id) {
         console.error('Item not found');
     }
 
-    console.log(basket)
+    localStorage.setItem('data', JSON.stringify(basket));
+
+    console.log(basket) // REMOVE WHEN DONE
+    update(selectedItem.id);
 };
+
+function update(id) {
+    let search = basket.find((x) => x.id === id);
+    console.log(search);
+
+
+}
