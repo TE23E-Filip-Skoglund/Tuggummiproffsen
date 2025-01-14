@@ -170,6 +170,11 @@ body {
     width: 100%;
 }
 
+#quantity {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
 .cart-item img {
     width: 27%;
     height: 27%;

@@ -1,49 +1,48 @@
-let shop = document.getElementById("shop");
-
 let itemsData = [
     {
         id: "produkt1",
         name: "Chocklad Chilli",
-        price: 39.90,
+        price: 39.99,
         img: "img/produkt/p-chocklad-chili.webp",
     },
     {
         id: "produkt2",
         name: "Blbärspaj",
-        price: 39.90,
+        price: 39.99,
         img: "img/produkt/p-blueberrypie.webp",
     },
     {
         id: "produkt3",
         name: "Disel",
-        price: 69.90,
+        price: 69.99,
         img: "img/produkt/p-disel.webp",
     },
     {
         id: "produkt4",
         name: "Guacamole",
-        price: 39.90,
+        price: 39.99,
         img: "img/produkt/p-guacamole.webp",
     },
     {
         id: "produkt5",
         name: "Guld",
-        price: 59.90,
+        price: 59.99,
         img: "img/produkt/p-gold.webp",
     },
     {
         id: "produkt6",
         name: "Vitlök",
-        price: 24.90,
+        price: 24.99,
         img: "img/produkt/p-garlic.webp"
     }
 ];
 
-let basket = JSON.parse(localStorage.getItem('data')) || []; // get storage from localstorage, or create a empty array
+let basket = JSON.parse(localStorage.getItem('data')) || []; // h'mta data från local storage, eller skapa en tom array
 
 function createShop() {
+    let shopDiv = document.getElementById("shop");
     // Map functions tar varje item i arrayen ovan försig och upprepar det för x antal gånger (en gång för varje produkt)
-    return (shop.innerHTML = itemsData.map((x) => {
+    return (shopDiv.innerHTML = itemsData.map((x) => {
         return `
         <div class="item">
             <img src="${x.img}" alt="Produkt: Tuggumi med smak av ${x.namn}">
@@ -60,10 +59,42 @@ function createShop() {
 };
 createShop();
 
+function createBasket() {
+    let basketDiv = document.getElementById('cart-items');
+    let totalPrice = 0;
+
+    // Map functions tar varje item i arrayen ovan försig och upprepar det för x antal gånger (en gång för varje produkt)
+    return (basketDiv.innerHTML = basket.map((x) => {
+        let item = itemsData.find((item) => item.id === x.id);
+        totalPrice += item.price * x.amount;
+
+        return `
+        <div class="cart-item">
+                <img src="${item.img}" alt="">
+                <div class="cart-details">
+                    <h3>${item.name}</h3>
+                    <div class="cart-price-quantity">
+                        <div class="cart-buttons">
+                            <i onclick="removeFromBasket('${item.id}')" class="bi bi-dash-square"></i>
+                            <span id="quantity">${x.amount}</span>
+                            <i onclick="addToBasket('${item.id}')" class="bi bi-plus-square"></i>
+                        </div>
+                        <h3>${item.price}:-</h3>
+                    </div>
+                </div>
+            </div>
+    `
+    }).join("") + `<div class="cart-footer">
+        <h2>Totalt: ${totalPrice.toFixed(2)}:-</h2>
+    </div>`
+    );
+}
+createBasket();
+
 
 function addToBasket(id) {
     let selectedItem = itemsData.find((x) => x.id === id);
-    let exist = basket.find((x) => x.id === selectedItem.id)
+    let exist = basket.find((x) => x.id === selectedItem.id);
 
     if (selectedItem) {
         if (!exist) {
@@ -79,14 +110,27 @@ function addToBasket(id) {
     }
 
     localStorage.setItem('data', JSON.stringify(basket));
-
-    console.log(basket) // REMOVE WHEN DONE
-    update(selectedItem.id);
+    // console.log(basket); // TA BORT NÄR KLAR
+    createBasket();
 };
 
-function update(id) {
-    let search = basket.find((x) => x.id === id);
-    console.log(search);
+function removeFromBasket(id) {
+    let selectedItem = itemsData.find((x) => x.id === id);
+    let exist = basket.find((x) => x.id === selectedItem.id);
 
+    if (selectedItem) {
+        if (!exist) {
+            return; // Gör ingenting
+        } else if (exist.amount === 1) {
+            basket = basket.filter((x) => x.id !== id);
+        } else {
+            exist.amount -= 1;
+        }
+    } else {
+        console.error('already no of this item in basket');
+    }
 
-}
+    localStorage.setItem('data', JSON.stringify(basket));
+    // console.log(basket); // TA BORT NÄR KLART
+    createBasket();
+};
