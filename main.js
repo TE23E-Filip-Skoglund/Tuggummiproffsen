@@ -93,6 +93,7 @@ createBasket();
 
 
 function addToBasket(id) {
+    event.stopPropagation();
     let selectedItem = itemsData.find((x) => x.id === id);
     let exist = basket.find((x) => x.id === selectedItem.id);
 
@@ -115,6 +116,7 @@ function addToBasket(id) {
 };
 
 function removeFromBasket(id) {
+    event.stopPropagation();
     let selectedItem = itemsData.find((x) => x.id === id);
     let exist = basket.find((x) => x.id === selectedItem.id);
 
@@ -133,4 +135,33 @@ function removeFromBasket(id) {
     localStorage.setItem('data', JSON.stringify(basket));
     // console.log(basket); // TA BORT NÄR KLART
     createBasket();
-};
+}
+
+
+
+// ******************** Varukorgen ********************
+
+// OM DET BARA BLIR EN CART-ICON ID: document.getElementById('cart-icon').addEventListener('click', toggleCart);
+
+// Hanterar click på varukorgsikonen
+document.querySelectorAll('.cart-icon-button').forEach(icon => {
+    icon.addEventListener('click', openCart);
+});
+
+function openCart() {
+    const cart = document.getElementById('cart');
+    cart.classList.toggle('show');
+}
+
+// Hanterar click, sorterar ut specifikt de utanför varukorgen för att stänga varukorgen (i funktonen closeCartOrNot)
+document.addEventListener('click', closeCartOrNot);
+
+function closeCartOrNot(event) {
+    const cart = document.getElementById('cart');
+    const isClickInsideCart = cart.contains(event.target);
+    const isClickOnCartIcon = event.target.closest('.cart-icon'); // För att inte stänga varukorgen innan den ens öppnats
+
+    if (!isClickInsideCart && !isClickOnCartIcon) {
+        cart.classList.remove('show');
+    }
+}
