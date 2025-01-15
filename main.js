@@ -35,7 +35,7 @@ let itemsData = [
         price: 24.99,
         img: "img/produkt/p-garlic.webp"
     }
-];
+]
 
 let basket = JSON.parse(localStorage.getItem('data')) || []; // h'mta data från local storage, eller skapa en tom array
 
@@ -56,7 +56,7 @@ function createShop() {
         </div>
     `
     }).join(""));
-};
+}
 createShop();
 
 function createBasket() {
@@ -113,7 +113,7 @@ function addToBasket(id) {
     localStorage.setItem('data', JSON.stringify(basket));
     // console.log(basket); // TA BORT NÄR KLAR
     createBasket();
-};
+}
 
 function removeFromBasket(id) {
     event.stopPropagation();

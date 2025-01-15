@@ -21,6 +21,7 @@ body {
     display: none;
     background-color: var(--primary-color);
     justify-content: space-between;
+    align-items: center;
 }
 
 .navbar-mobile img {
@@ -28,12 +29,14 @@ body {
     height: auto;
     object-fit: contain;
     padding: 10px 20px;
+    aspect-ratio: 2000 / 313; /* LIGHTHOUSE Rekomendation */
 }
 
 .navbar-desktop img {
     width: 40vw;
     height: auto;
     object-fit: contain;
+    aspect-ratio: 2000 / 313; /* LIGHTHOUSE Rekomendation */
 }
 
 .navbar-mobile i,
@@ -105,6 +108,7 @@ body {
 
 .item img {
     width: 85%;
+    aspect-ratio: 1 / 1; /* LIGHTHOUSE Rekomendation*/
 }
 
 /* Styles for mobile/tablet */
@@ -178,6 +182,7 @@ body {
     display: flex;
     margin-top: 3%;
     width: 100%;
+    aspect-ratio: 1 / 1; /* LIGHTHOUSE Rekomendation, ska hjälpa att reservera hur mycket plats bilden behöver och därmed öka performance */
 }
 
 #quantity {
@@ -234,6 +239,8 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 5%;
+    min-height: 125px; /* LIGHTHOUSE Rekomendation (Avoid large layerout shifts) detta ska hjälpa webblärsaren att utföra mindre efterarbete efter den initiella inladdningen.*/
+    box-sizing: border-box; /* LIGHTHOUSE Rekomendation (Avoid large layerout shifts) detta ska hjälpa webblärsaren att utföra mindre efterarbete efter den initiella inladdningen.*/
 }
 
 .footer img {
