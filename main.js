@@ -159,7 +159,7 @@ document.addEventListener('click', closeCartOrNot);
 function closeCartOrNot(event) {
     const cart = document.getElementById('cart');
     const isClickInsideCart = cart.contains(event.target);
-    const isClickOnCartIcon = event.target.closest('.cart-icon'); // För att inte stänga varukorgen innan den ens öppnats
+    const isClickOnCartIcon = event.target.closest('.cart-icon-button'); // För att inte stänga varukorgen innan den ens öppnats
 
     if (!isClickInsideCart && !isClickOnCartIcon) {
         cart.classList.remove('show');
