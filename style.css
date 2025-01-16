@@ -182,7 +182,6 @@ body {
     display: flex;
     margin-top: 3%;
     width: 100%;
-    aspect-ratio: 1 / 1; /* LIGHTHOUSE Rekomendation, ska hjälpa att reservera hur mycket plats bilden behöver och därmed öka performance */
 }
 
 #quantity {
@@ -196,6 +195,7 @@ body {
     margin-right: 5%;
     margin-top: 3%;
     margin-bottom: 3%;
+    aspect-ratio: 1 / 1; /* LIGHTHOUSE Rekomendation, ska hjälpa att reservera hur mycket plats bilden behöver och därmed öka performance */
 }
 
 .cart-price-quantity {

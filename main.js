@@ -7,7 +7,7 @@ let itemsData = [
     },
     {
         id: "produkt2",
-        name: "Blbärspaj",
+        name: "Blåbärspaj",
         price: 39.99,
         img: "img/produkt/p-blueberrypie.webp",
     },
