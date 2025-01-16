@@ -1,0 +1,38 @@
+[
+    {
+        "id": "produkt1",
+        "name": "Chocklad Chilli",
+        "price": 39.99,
+        "img": "img/produkt/p-chocklad-chili.webp"
+    },
+    {
+        "id": "produkt2",
+        "name": "Blåbärspaj",
+        "price": 39.99,
+        "img": "img/produkt/p-blueberrypie.webp"
+    },
+    {
+        "id": "produkt3",
+        "name": "Disel",
+        "price": 69.99,
+        "img": "img/produkt/p-disel.webp"
+    },
+    {
+        "id": "produkt4",
+        "name": "Guacamole",
+        "price": 39.99,
+        "img": "img/produkt/p-guacamole.webp"
+    },
+    {
+        "id": "produkt5",
+        "name": "Guld",
+        "price": 59.99,
+        "img": "img/produkt/p-gold.webp"
+    },
+    {
+        "id": "produkt6",
+        "name": "Vitlök",
+        "price": 24.99,
+        "img": "img/produkt/p-garlic.webp"
+    }
+]

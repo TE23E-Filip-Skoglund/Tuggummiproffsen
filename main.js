@@ -1,44 +1,16 @@
-let itemsData = [
-    {
-        id: "produkt1",
-        name: "Chocklad Chilli",
-        price: 39.99,
-        img: "img/produkt/p-chocklad-chili.webp",
-    },
-    {
-        id: "produkt2",
-        name: "Blåbärspaj",
-        price: 39.99,
-        img: "img/produkt/p-blueberrypie.webp",
-    },
-    {
-        id: "produkt3",
-        name: "Disel",
-        price: 69.99,
-        img: "img/produkt/p-disel.webp",
-    },
-    {
-        id: "produkt4",
-        name: "Guacamole",
-        price: 39.99,
-        img: "img/produkt/p-guacamole.webp",
-    },
-    {
-        id: "produkt5",
-        name: "Guld",
-        price: 59.99,
-        img: "img/produkt/p-gold.webp",
-    },
-    {
-        id: "produkt6",
-        name: "Vitlök",
-        price: 24.99,
-        img: "img/produkt/p-garlic.webp"
-    }
-]
+// ******************** Läs in produkter ********************
+let itemsData = [];
+fetch('itemsData.json')
+    .then(response => response.json())
+    .then(data => {
+        itemsData = data;
+        createShop();
+    })
+    .catch(error => console.error('Error loading items data:', error));
 
 let basket = JSON.parse(localStorage.getItem('data')) || []; // h'mta data från local storage, eller skapa en tom array
 
+// ******************** Skapa produkt- och varukorgskorten ********************
 function createShop() {
     let shopDiv = document.getElementById("shop");
     // Map functions tar varje item i arrayen ovan försig och upprepar det för x antal gånger (en gång för varje produkt)
@@ -57,7 +29,6 @@ function createShop() {
     `
     }).join(""));
 }
-createShop();
 
 function createBasket() {
     let basketDiv = document.getElementById('cart-items');
@@ -91,7 +62,7 @@ function createBasket() {
 }
 createBasket();
 
-
+// ***************** Lägg till/Ta bort från varukorg/produktsida *****************
 function addToBasket(id) {
     event.stopPropagation();
     let selectedItem = itemsData.find((x) => x.id === id);
@@ -138,16 +109,7 @@ function removeFromBasket(id) {
 }
 
 
-
 // ******************** Varukorgen ********************
-
-// OM DET BARA BLIR EN CART-ICON ID: document.getElementById('cart-icon').addEventListener('click', toggleCart);
-
-// Hanterar click på varukorgsikonen
-document.querySelectorAll('.cart-icon-button').forEach(icon => {
-    icon.addEventListener('click', openCart);
-});
-
 function openCart() {
     const cart = document.getElementById('cart');
     cart.classList.toggle('show');
@@ -164,4 +126,35 @@ function closeCartOrNot(event) {
     if (!isClickInsideCart && !isClickOnCartIcon) {
         cart.classList.remove('show');
     }
+}
+
+
+// ******************** Sökbar ********************
+document.querySelectorAll('.search-bar').forEach(searchBar => {
+    searchBar.addEventListener('input', handleSearchInput)
+});
+
+function handleSearchInput(event) {
+    let query = event.target.value.toLowerCase();
+    let filteredItems = itemsData.filter(item => item.name.toLowerCase().includes(query));
+    console.log(filteredItems);
+    displayFilteredItems(filteredItems);
+}
+
+function displayFilteredItems(filteredItems) {
+    let shopDiv = document.getElementById("shop");
+    shopDiv.innerHTML = filteredItems.map((x) => {
+        return `
+        <div class="item">
+            <img src="${x.img}" alt="Produkt: Tuggumi med smak av ${x.namn}">
+            <div class="details">
+                <h3>${x.name}</h3>
+                <div class="price">
+                    <h2>${x.price}:-</h2>
+                    <i onclick="addToBasket('${x.id}')" class="bi bi-basket"></i>
+                </div>
+            </div>
+        </div>
+    `;
+    }).join("");
 }
