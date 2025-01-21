@@ -1,3 +1,6 @@
+// ******************** Läs in/skapa varukorgen ********************
+let basket = JSON.parse(localStorage.getItem('data')) || []; // hämta data från local storage, eller skapa en tom array
+
 // ******************** Läs in produkter ********************
 let itemsData = [];
 fetch('itemsData.json')
@@ -5,10 +8,9 @@ fetch('itemsData.json')
     .then(data => {
         itemsData = data;
         createShop();
+        createBasket();
     })
     .catch(error => console.error('Error loading items data:', error));
-
-let basket = JSON.parse(localStorage.getItem('data')) || []; // h'mta data från local storage, eller skapa en tom array
 
 // ******************** Skapa produkt- och varukorgskorten ********************
 function createShop() {
@@ -22,7 +24,9 @@ function createShop() {
                 <h3>${x.name}</h3>
                 <div class="price">
                     <h2>${x.price}:-</h2>
-                    <i onclick="addToBasket('${x.id}')" class="bi bi-basket"></i>
+                    <button class="hide-b" onclick="addToBasket('${x.id}')">
+                        <i class="bi bi-basket"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -60,7 +64,6 @@ function createBasket() {
     </div>`
     );
 }
-createBasket();
 
 // ***************** Lägg till/Ta bort från varukorg/produktsida *****************
 function addToBasket(id) {
@@ -81,6 +84,7 @@ function addToBasket(id) {
         console.error('Item not found');
     }
 
+    console.log(basket);
     localStorage.setItem('data', JSON.stringify(basket));
     // console.log(basket); // TA BORT NÄR KLAR
     createBasket();
@@ -151,7 +155,9 @@ function displayFilteredItems(filteredItems) {
                 <h3>${x.name}</h3>
                 <div class="price">
                     <h2>${x.price}:-</h2>
-                    <i onclick="addToBasket('${x.id}')" class="bi bi-basket"></i>
+                    <button class="hide-b" onclick="addToBasket('${x.id}')">
+                        <i class="bi bi-basket"></i>
+                    </button>
                 </div>
             </div>
         </div>
