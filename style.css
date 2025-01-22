@@ -144,6 +144,22 @@ body {
     aspect-ratio: 1 / 1;
 }
 
+.details {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30%;
+}
+
+.price-and-button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bi-basket {
+    font-size: 300%;
+    margin-left: 235%;
+}
+
 /* Styles for mobile/tablet */
 @media (max-width: 1023px) {
     .shop {

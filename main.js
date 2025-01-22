@@ -22,7 +22,7 @@ function createShop() {
             <img src="${x.img}" alt="Produkt: Tuggumi med smak av ${x.namn}">
             <div class="details">
                 <h3>${x.name}</h3>
-                <div class="price">
+                <div class="price-and-button">
                     <h2>${x.price}:-</h2>
                     <button class="hide-b" onclick="addToBasket('${x.id}')">
                         <i class="bi bi-basket"></i>
@@ -141,19 +141,25 @@ document.querySelectorAll('.search-bar').forEach(searchBar => {
 function handleSearchInput(event) {
     let query = event.target.value.toLowerCase();
     let filteredItems = itemsData.filter(item => item.name.toLowerCase().includes(query));
-    console.log(filteredItems);
-    displayFilteredItems(filteredItems);
+    displayFilteredItems(filteredItems, query);
 }
 
-function displayFilteredItems(filteredItems) {
+function displayFilteredItems(filteredItems, query) {
     let shopDiv = document.getElementById("shop");
-    shopDiv.innerHTML = filteredItems.map((x) => {
-        return `
+    if (filteredItems.length == 0) {
+        shopDiv.innerHTML = `
+        <strong>
+            <p class="p">Vi hittade inga sökresultat för "${query}"</p>
+        </strong>
+        `;
+    } else {
+        shopDiv.innerHTML = filteredItems.map((x) => {
+            return `
         <div class="item">
             <img src="${x.img}" alt="Produkt: Tuggumi med smak av ${x.namn}">
             <div class="details">
                 <h3>${x.name}</h3>
-                <div class="price">
+                <div class="price-and-button">
                     <h2>${x.price}:-</h2>
                     <button class="hide-b" onclick="addToBasket('${x.id}')">
                         <i class="bi bi-basket"></i>
@@ -162,5 +168,6 @@ function displayFilteredItems(filteredItems) {
             </div>
         </div>
     `;
-    }).join("");
+        }).join("");
+    }
 }
