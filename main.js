@@ -22,7 +22,7 @@ function createShop() {
             <img src="${x.img}" alt="Produkt: Tuggumi med smak av ${x.namn}">
             <div class="details">
                 <h3>${x.name}</h3>
-                <div class="price-and-button">
+                <div class="price-and-button alfa-slab">
                     <h2>${x.price}:-</h2>
                     <button class="hide-b" onclick="addToBasket('${x.id}')">
                         <i class="bi bi-basket"></i>
@@ -54,13 +54,13 @@ function createBasket() {
                             <span id="quantity">${x.amount}</span>
                             <i onclick="addToBasket('${item.id}')" class="bi bi-plus-square"></i>
                         </div>
-                        <h3>${item.price}:-</h3>
+                        <h3 class="alfa-slab">${item.price}:-</h3>
                     </div>
                 </div>
             </div>
     `
     }).join("") + `<div class="cart-footer">
-        <h2>Totalt: ${totalPrice.toFixed(2)}:-</h2>
+        <h2 class="alfa-slab" >Totalt: ${totalPrice.toFixed(2)}:-</h2>
     </div>`
     );
 }
@@ -159,7 +159,7 @@ function displayFilteredItems(filteredItems, query) {
             <img src="${x.img}" alt="Produkt: Tuggumi med smak av ${x.namn}">
             <div class="details">
                 <h3>${x.name}</h3>
-                <div class="price-and-button">
+                <div class="price-and-button alfa-slab">
                     <h2>${x.price}:-</h2>
                     <button class="hide-b" onclick="addToBasket('${x.id}')">
                         <i class="bi bi-basket"></i>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cagliostro&display=swap');
+
 :root {
     --primary-color: #FFE632;
     --secondary-color: #FFF39A;
@@ -7,9 +9,9 @@
     --primary-cart: #A0A0A0;
     --background-cart: #F4F5F0;
 }
-
+    
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Cagliostro', Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -20,6 +22,9 @@ body {
     cursor: pointer;
 }
 
+.alfa-slab {
+    font-family: "Alfa Slab One", Arial, sans-serif;
+}
 
 /* ==================== Navbar ==================== */
 .navbar-desktop,
@@ -96,6 +101,7 @@ body {
 .search-bar {
     border: none;
     font-size: large;
+    font-family: 'Cagliostro', Arial, sans-serif;
     padding-left: 10%;
     outline: none;
 }
@@ -137,6 +143,10 @@ body {
     align-items: center;
     background-color: var(--product-card-color);
     margin: 3%;
+}
+
+.details h3 {
+    font-size: 150%;
 }
 
 .item img {
