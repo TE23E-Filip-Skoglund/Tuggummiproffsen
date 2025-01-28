@@ -298,8 +298,6 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 5%;
-    min-height: 125px; /* LIGHTHOUSE Rekomendation (Avoid large layerout shifts) detta ska hjälpa webblärsaren att utföra mindre efterarbete efter den initiella inladdningen.*/
-    box-sizing: border-box; /* LIGHTHOUSE Rekomendation (Avoid large layerout shifts) detta ska hjälpa webblärsaren att utföra mindre efterarbete efter den initiella inladdningen.*/
 }
 
 .footer img {
