@@ -19,7 +19,7 @@ function createShop() {
     return (shopDiv.innerHTML = itemsData.map((x) => {
         return `
         <div class="item">
-            <img src="${x.img}" alt="Produkt: Tuggumi med smak av ${x.namn}">
+            <img src="${x.img}" alt="Produkt: Tuggumi med smak av ${x.name}">
             <div class="details">
                 <h3>${x.name}</h3>
                 <div class="price-and-button alfa-slab">
@@ -45,7 +45,7 @@ function createBasket() {
 
         return `
         <div class="cart-item">
-                <img src="${item.img}" alt="">
+                <img src="${item.img}" alt="Produkt i varukorg: Tuggumi med smak av ${x.name}">
                 <div class="cart-details">
                     <h3>${item.name}</h3>
                     <div class="cart-price-quantity">
@@ -156,7 +156,7 @@ function displayFilteredItems(filteredItems, query) {
         shopDiv.innerHTML = filteredItems.map((x) => {
             return `
         <div class="item">
-            <img src="${x.img}" alt="Produkt: Tuggumi med smak av ${x.namn}">
+            <img src="${x.img}" alt="Produkt: Tuggumi med smak av ${x.name}">
             <div class="details">
                 <h3>${x.name}</h3>
                 <div class="price-and-button alfa-slab">
